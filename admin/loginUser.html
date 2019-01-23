@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Page Title</title>
+    <title>login user</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="stylesheet"
@@ -11,13 +11,42 @@
       media="screen"
       href="../assets/css/loginUser.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
-    <ul>
-      <li><span>Employee Id</span><input type="text" id="employeId" /></li>
-      <li><span>Password</span><input type="text" id="employePassword" /></li>
-      <li><button>login</button></li>
-    </ul>
+    <div class="container global">
+      <div class="row">
+        <div class="col-md-2 col-sm-2 col-xl-4 col-lg-4"></div>
+        <div class="col-md-8 col-sm-8 col-xl-4 col-lg-4">
+          <form class="formConatiner">
+            <h1>Login</h1>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Enter ID</label>
+              <input type="email"  class="form-control"  id="exampleInputEmail1"  aria-describedby="emailHelp"  placeholder="Enter ID"/>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="exampleInputPassword1"
+                placeholder="Password"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-block btn-success">Login</button>
+          </form>
+
+        </div>
+        
+      </div>
+    </div>
+
     <script src="../assets/javascript/login.js"></script>
   </body>
 </html>
