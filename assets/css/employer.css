@@ -1,0 +1,72 @@
+.sidebar {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color:#83655b96;
+    overflow-x: hidden;
+    
+  
+  }
+  .Q{
+      margin-left: 7px;
+  }
+  .sidebar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    display: block;
+    margin-top: 110px;
+    
+  }
+  .sidebar a:hover {
+    color: #f1f1f1;
+  }
+  .main {
+    margin-left: 157px;
+  margin-top: 70px;
+  font-size: 30px;
+  font-family: "Courier New", Courier, monospace;	
+text-align: center;
+background-size: 35% 50%;
+font-style: oblique	;
+font-weight: 100	;
+font-stretch: ultra-condensed	;
+line-height:40px;
+
+
+  }
+  .navbar {
+    overflow: hidden;
+    
+ 
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    margin-left: 150px;
+  }
+  
+  
+  .navbar a {
+    float: right;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+   margin-right: 150px;
+  }
+  
+  
+  .navbar a:hover {
+    color: #f1f1f1;
+  }
+
+
+  @media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+  }
