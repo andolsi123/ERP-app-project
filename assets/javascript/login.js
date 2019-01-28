@@ -1,6 +1,7 @@
 document.getElementById("btnLogin").addEventListener("click", actionLogin);
 
 var tabRh = JSON.parse(localStorage.getItem("tabRh"));
+
 var tabEmploye = JSON.parse(localStorage.getItem("tabEmploye"));
 
 function actionLogin() {
