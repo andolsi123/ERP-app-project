@@ -5,7 +5,7 @@
     z-index: 1;
     top: 0;
     left: 0;
-    background-color:rgb(19, 119, 145);
+    background-color:#83655b96;
     overflow-x: hidden;
     
   
@@ -41,7 +41,7 @@ line-height:40px;
   }
   .navbar {
     overflow: hidden;
-    background-color: rgb(19, 119, 145);
+    
  
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
@@ -53,7 +53,7 @@ line-height:40px;
   .navbar a {
     float: right;
     display: block;
-    color: white;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
