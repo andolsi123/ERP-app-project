@@ -1,0 +1,9 @@
+h1{
+    text-align: center;
+    padding-bottom: 1em;
+    color: white;
+ 
+}
+.image{
+    background-image: url("./../img/login-page-background-8.jpg");
+}
