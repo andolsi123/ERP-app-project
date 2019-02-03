@@ -2,9 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+  
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Employe</title>
+    <title>Dashboard</title>
 
     <meta
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
@@ -20,7 +21,7 @@
     />
   </head>
 
-  <body onload="affEmploye()">
+  <body onload="accountRh()">
     <div class="wrapper">
       <div
         class="sidebar"
@@ -74,23 +75,22 @@
           </div>
         </nav>
 
-        <div class="content"><div class="container-fluid">
+        <div class="content">
+          <div class="container-fluid">
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Salary</th>
+            <th scope="col">ID</th>
+            <th scope="col">Password</th>
+        </tr>
+    </thead>
+    <tbody id="accountrh">
 
-            <button><a href="./addEmploye.html">add an employe</a></button>
-            <table class="table">
-              <tr>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Id</th>
-                <th scope="col">Occupation</th>
-                <th scope="col">Action</th>
-              </tr>
-              </thead>
-              <tbody id="employeAffichage">
-
-              </tbody>
-            </table>
-            
+    </tbody>
+</table>
         </div>
       </div>
 

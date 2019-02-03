@@ -1,5 +1,3 @@
-document.getElementById("btnLogin").addEventListener("click", actionLogin);
-
 var tabRh = JSON.parse(localStorage.getItem("tabRh"));
 
 var tabEmploye = JSON.parse(localStorage.getItem("tabEmploye"));
@@ -13,7 +11,7 @@ function actionLogin() {
           document.getElementById("exampleInputPassword1").value
       ) {
         localStorage.setItem("tabLoginRh", JSON.stringify(tabRh[i].cin));
-        window.location.href = "";
+        window.location.href = "mainMenu.html";
         break;
       }
     }
@@ -30,7 +28,7 @@ function actionLogin() {
           "tabLoginEmploye",
           JSON.stringify(tabEmploye[i].cin)
         );
-        window.location.href = "";
+        window.location.href = "Home.html";
         break;
       }
     }

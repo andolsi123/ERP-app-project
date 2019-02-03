@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Employe</title>
+    <title>Salaire</title>
 
     <meta
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
@@ -20,11 +20,12 @@
     />
   </head>
 
-  <body onload="affEmploye()">
+  <body onload="affSalaire()">
     <div class="wrapper">
       <div
         class="sidebar"
         data-color="blue">
+
         <div class="sidebar-wrapper">
           <div class="logo">
             <a href="" class="simple-text"> acme underworld </a>
@@ -76,23 +77,20 @@
 
         <div class="content"><div class="container-fluid">
 
-            <button><a href="./addEmploye.html">add an employe</a></button>
             <table class="table">
-              <tr>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Id</th>
-                <th scope="col">Occupation</th>
-                <th scope="col">Action</th>
-              </tr>
-              </thead>
-              <tbody id="employeAffichage">
-
-              </tbody>
-            </table>
-            
-        </div>
-      </div>
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">employe</th>
+                    <th scope="col">Salary</th>
+                    <th scope="col">Salary After unpaid days</th>
+                  </tr>
+                </thead>
+                <tbody  id="saliare">
+        
+                </tbody>
+              </table>
+              
+        </div></div>
 
         <footer class="footer">
           <div class="container-fluid">
