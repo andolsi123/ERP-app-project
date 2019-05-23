@@ -1,99 +1,83 @@
-
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>welcome</title>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <body>
+  <title>welcome</title>
 
-    <header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand border-right pr-3" href="#">Acme Underworld</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link border mr-1 rounded" href="./main.html">Home </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link border mr-1 rounded active bg-white text-dark" href="./GererRh.html">Human Ressources</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link border mr-1 rounded" href="./ConsulterEmployer.html">Employees</a>
-        </li>
-        <li class="nav-item">
-                <a class="nav-link border mr-1 rounded" href="./messagesA.html">Messages</a>
-              </li>
-      </ul>
-      <a href="GererCompteAdmin.html"><button class="btn btn-outline-success my-2 my-sm-0 mr-2" type="submit">CONFIGURATION</button></a>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="decAdmin()">LOGOUT</button>
-    </div>
-  </nav>
-</header>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
 
-<div class="container mt-5 pt-5 ml-5">
+<body onload="rempRh()">
+
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand border-right pr-3" href="#">Acme Underworld</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link border mr-1 rounded" href="./main.html">Home </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link border mr-1 rounded active bg-white text-dark" href="./GererRh.html">Human Ressources</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link border mr-1 rounded" href="./ConsulterEmployer.html">Employees</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link border mr-1 rounded" href="./messagesA.html">Messages</a>
+          </li>
+        </ul>
+        <a href="GererCompteAdmin.html"><button class="btn btn-outline-success my-2 my-sm-0 mr-2"
+            type="submit">CONFIGURATION</button></a>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="decAdmin()">LOGOUT</button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container mt-5 pt-5 ml-5">
     <form>
-        <div class="form-group">
-            <label for="exampleFormControlSelect1">First Name :</label>
-          <input
-            class="form-control"
-            type="text"
-            placeholder="First Name"
-            id="nomEmploye"
-          />
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlSelect1">Last Name :</label>
-          <input
-            class="form-control"
-            type="text"
-            placeholder="Last Name"
-            id="prenomEmploye"
-          />
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">Ocuupation :</label>
-          <select class="form-control" id="exampleFormControlSelect1">
-            <option id="op1" value="Human Ressources">Human Ressources</option>
-            
-          </select>
-        </div>
-        <div>
-            <label for="exampleFormControlSelect1">salary :</label>
-          <input type="number" id="employeSalaire" class="form-control" placeholder="salire" value="1500"/></div>
-        <div class="form-group">
-            <label for="exampleFormControlSelect1">ID :</label>
-          <input
-            class="form-control"
-            type="text"
-            placeholder="ID"
-            id="cinEmploye"
-          />
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlSelect1">Password :</label>
-          <input
-            type="password"
-            class="form-control"
-            id="exampleInputPassword1"
-            placeholder="Password"
-          />
-        </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">First Name :</label>
+        <input class="form-control" type="text" placeholder="First Name" id="nomEmploye" />
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Last Name :</label>
+        <input class="form-control" type="text" placeholder="Last Name" id="prenomEmploye" />
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Ocuupation :</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option id="op1" value="Human Ressources">Human Ressources</option>
 
-        <button class="btn btn-secondary" onclick="actionAddRh()">Save</button>
-      </form>
-</div>
+        </select>
+      </div>
+      <div>
+        <label for="exampleFormControlSelect1">salary :</label>
+        <input type="number" id="employeSalaire" class="form-control" placeholder="salire" value="1500" /></div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">ID :</label>
+        <input class="form-control" type="text" placeholder="ID" id="cinEmploye" />
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Password :</label>
+        <input type="text" class="form-control" id="exampleInputPasswordd" placeholder="Password" />
+      </div>
+
+      <button class="btn btn-secondary" type="button" onclick="actionAddRh()">Save</button>
+    </form>
+  </div>
 
 
-<script src="../../ERP website project/assets/javascript/Admin/mainAdmin.js"></script>
+  <script src="../../ERP website project/assets/javascript/Admin/mainAdmin.js"></script>
 
 </body>
+
 </html>

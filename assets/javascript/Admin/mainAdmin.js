@@ -1,16 +1,18 @@
 //////////////login admin///////////////
-/*localStorage.setItem("adminAccount",JSON.stringify(["admin","admin"]))*/
+
+localStorage.setItem("adminAccount", JSON.stringify(["admin", "admin"]));
+
 function actionLoginAdmin() {
-  var adminLogin = JSON.parse(localStorage.getItem("adminAccount"));
+  let adminLogin = JSON.parse(localStorage.getItem("adminAccount"));
   if (
-    document.getElementById("exampleInputEmail").value &&
-    document.getElementById("exampleInputEmail").value
+    document.getElementById("exampleInputEmail1").value &&
+    document.getElementById("exampleInputPassword1").value
   ) {
     if (
-      document.getElementById("exampleInputEmail").value === adminLogin[0] &&
-      document.getElementById("exampleInputEmail").value === adminLogin[1]
+      document.getElementById("exampleInputEmail1").value === adminLogin[0] &&
+      document.getElementById("exampleInputPassword1").value === adminLogin[1]
     ) {
-      window.location.href = "../";
+      window.location.href = "main.html";
     } else {
       alert("incorrect account name or password");
     }
@@ -26,7 +28,7 @@ function decAdmin() {
 ////////////////////////////mod password and login
 
 function modAdmin() {
-  var loginAdmin = JSON.parse(localStorage.getItem("adminAccount"));
+  let loginAdmin = JSON.parse(localStorage.getItem("adminAccount"));
   loginAdmin[0] = document.getElementById("chandeLogin").value;
   loginAdmin[1] = document.getElementById("changePass").value;
   localStorage.setItem("adminAccount", JSON.stringify(loginAdmin));
@@ -36,39 +38,65 @@ function modAdmin() {
 ////////////////////////adding RH ////////////////////////
 
 function actionAddRh() {
-  var tabRh = JSON.parse(localStorage.getItem("tabRh")) || [];
+  let tabRh = JSON.parse(localStorage.getItem("tabRh")) || [];
 
-  if (document.getElementById("").value && document.getElementById("").value) {
-    var object = {
-      name: document.getElementById("nomEmploye").value,
-      prenom: document.getElementById("prenomEmploye").value,
-      occupation: "Human Ressources",
-      salaire: "1500",
-      password: document.getElementById("exampleInputPassword1").value,
-      id: document.getElementById("cinEmploye").value
-    };
+  if (localStorage.getItem("editRh")) {
+    for (let i = 0; i < tabRh.length; i++) {
+      if (tabRh[i].id === localStorage.getItem("editRh")) {
+        let object = {
+          name: document.getElementById("nomEmploye").value,
+          prenom: document.getElementById("prenomEmploye").value,
+          occupation: "Human Ressources",
+          salaire: "1500",
+          password: document.getElementById("exampleInputPasswordd").value,
+          id: document.getElementById("cinEmploye").value
+        };
+        tabRh[i] = object;
+        localStorage.removeItem("editRh");
+      }
+    }
+    localStorage.setItem("tabRh", JSON.stringify(tabRh));
+    window.location = "GererRh.html";
+  } else {
+    if (
+      document.getElementById("nomEmploye").value &&
+      document.getElementById("prenomEmploye").value &&
+      document.getElementById("exampleInputPasswordd").value &&
+      document.getElementById("cinEmploye").value
+    ) {
+      let object = {
+        name: document.getElementById("nomEmploye").value,
+        prenom: document.getElementById("prenomEmploye").value,
+        occupation: "Human Ressources",
+        salaire: "1500",
+        password: document.getElementById("exampleInputPasswordd").value,
+        id: document.getElementById("cinEmploye").value
+      };
+      tabRh.push(object);
+      localStorage.setItem("tabRh", JSON.stringify(tabRh));
+    }
+    window.location.href = "GererRh.html";
   }
-  tabRh.push(object);
-  localStorage.setItem("tabRh", JSON.stringify(tabRh));
 }
 
 ////////////////// affichage RH///////////////
 
 function affRh() {
-  var tabRh = JSON.parse(localStorage.getItem("tabRh")) || [];
+  let tabRh = JSON.parse(localStorage.getItem("tabRh")) || [];
 
   for (let i = 0; i < tabRh.length; i++) {
-    var html = "";
+    let html = "";
     html += "<tr><td>";
     html += tabRh[i].name + "</td>";
     html += "<td>" + tabRh[i].prenom + "</td>";
-    html += "<td>" + tabRh[i].salaire + "</td>";
+    html += "<td>" + tabRh[i].id + "</td>";
     html += "<td>" + tabRh[i].password + "</td>";
     html +=
-      "<button class='btn' onclick='modRh(" +
+      "<td> " +
+      "<button class='btn border rounded mr-2' type='button' onclick='modRh(" +
       tabRh[i].id +
       ")'>modifier</button>" +
-      "<button class='btn pl-2' onclick='supRh(" +
+      "<button class='btn pl-2 border rounded' type='button' onclick='supRh(" +
       tabRh[i].id +
       ")'>supprime</button></td></tr>";
 
@@ -80,41 +108,51 @@ function affRh() {
 
 //////////////////////del and mod RH///////////////
 
-function modRh(idd) {
-  var tabRh = JSON.parse(localStorage.getItem("tabRh"));
-
+function modRh(id) {
+  let tabRh = JSON.parse(localStorage.getItem("tabRh"));
   for (let i = 0; i < tabRh.length; i++) {
-    if (tabRh[i].id == idd) {
-      window.location.href = "addEmploye.html";
-
-      document.getElementById("nomEmploye").value = tabRh[i].nom;
-      document.getElementById("prenomEmploye").value = tabRh[i].prrenom;
-      document.getElementById("cinEmploye").value = tabRh[i].cin;
-      document.getElementById("exampleInputPassword1").value =
-        tabRh[i].password;
+    if (tabRh[i].id == id) {
+      localStorage.setItem("editRh", tabRh[i].id);
+      window.location.href = "createRH.html";
+      break;
     }
-    tabRh.splice(i, 1);
-    localStorage.setItem("tabRh", JSON.stringify(tabRh));
   }
 }
 
-function supRh(idd) {
-  var tabRh = JSON.parse(localStorage.getItem("tabRh"));
+function rempRh() {
+  if (localStorage.getItem("editRh")) {
+    let tabRh = JSON.parse(localStorage.getItem("tabRh"));
+    let edit = localStorage.getItem("editRh");
+    for (let i = 0; i < tabRh.length; i++) {
+      if (tabRh[i].id == edit) {
+        document.getElementById("nomEmploye").value = tabRh[i].name;
+        document.getElementById("prenomEmploye").value = tabRh[i].prenom;
+        document.getElementById("cinEmploye").value = tabRh[i].id;
+        document.getElementById("exampleInputPasswordd").value =
+          tabRh[i].password;
+      }
+    }
+  }
+}
+
+function supRh(id) {
+  let tabRh = JSON.parse(localStorage.getItem("tabRh"));
 
   for (let i = 0; i < tabRh.length; i++) {
-    if (tabRh[i].id == idd) {
+    if (tabRh[i].id == id) {
       tabRh.splice(i, 1);
       localStorage.setItem("tabRh", JSON.stringify(tabRh));
     }
   }
+  window.location.href = "GererRh.html";
 }
 
 //////////////////////////////afff employeee
 
 function affEmploye() {
-  var employeList = JSON.parse(localStorage.getItem("tabEmploye")) || [];
+  let employeList = JSON.parse(localStorage.getItem("tabEmploye")) || [];
   for (let i = 0; i < employeList.length; i++) {
-    var html = "";
+    let html = "";
     html +=
       "<tr><td>" +
       employeList[i].nom +
@@ -132,38 +170,25 @@ function affEmploye() {
 //////////////////////message///
 
 function sendMessage() {
-  var message = document.getElementById("exampleFormControlTextarea1").value;
-  if (
-    document.getElementById("exampleRadios1").checked &&
-    document.getElementById("exampleRadios2").checked
-  ) {
-    var object1 = {
-      title: document.getElementById('titleM').value,
-      msg: message,
-      id: Date.now()
-    };
-    var tab1 = localStorage.getItem("messageAdminToAll") || [];
-    tab.push(object1);
-    localStorage.setItem("messageAdminToAll", JSON.stringify(tab1));
-  }
+  let message = document.getElementById("exampleFormControlTextarea1").value;
   if (document.getElementById("exampleRadios2").checked) {
-    var object2 = {
-      title: document.getElementById('titleM').value,
+    let object2 = {
+      title: document.getElementById("titleM").value,
       msg: message,
       id: Date.now()
     };
-    var tab2 = localStorage.getItem("messageAdminToRh") || [];
-    tab.push(object2);
+    let tab2 = JSON.parse(ocalStorage.getItem("messageAdminToRh")) || [];
+    tab2.push(object2);
     localStorage.setItem("messageAdminToRh", JSON.stringify(tab2));
   }
   if (document.getElementById("exampleRadios1").checked) {
-    var object3 = {
+    let object3 = {
       msg: message,
-      title: document.getElementById('titleM').value,
+      title: document.getElementById("titleM").value,
       id: Date.now()
     };
-    var tab3 = localStorage.getItem("messageAdminToEmploye") || [];
-    tab.push(object3);
+    let tab3 = JSON.parse(localStorage.getItem("messageAdminToEmploye")) || [];
+    tab3.push(object3);
     localStorage.setItem("messageAdminToEmploye", JSON.stringify(tab3));
   }
 }

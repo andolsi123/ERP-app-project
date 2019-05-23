@@ -2,10 +2,6 @@
 
 ///////"blue | azure | green | orange | red | purple"
 
-document
-  .getElementById("btnDconnection")
-  .addEventListener("click", actionDconnect);
-
 function actionDconnect() {
   localStorage.setItem("tabLoginRh", "");
   window.location.href = "login.html";
@@ -14,46 +10,79 @@ function actionDconnect() {
 ////////////////////////////addding a new employe
 
 function actionAdd() {
-  var employeList = JSON.parse(localStorage.getItem("tabEmploye")) || [];
-  for (let i = 0; i < 5; i++) {
+  let employeList = JSON.parse(localStorage.getItem("tabEmploye")) || [];
+  let selected;
+  if (localStorage.getItem("editEmploye")) {
+    for (let i = 0; i < employeList.length; i++) {
+      if (localStorage.getItem("editEmploye") === employeList[i].cin) {
+        for (let i = 0; i < 5; i++) {
+          if (
+            document
+              .getElementById("exampleFormControlSelect1")
+              .getElementsByTagName("option")[i].selected
+          ) {
+            let selectedOccupation = document
+              .getElementById("exampleFormControlSelect1")
+              .getElementsByTagName("option")[i].value;
+            selected = selectedOccupation;
+          }
+        }
+        let employeObjectUpdate = {
+          nom: document.getElementById("nomEmploye").value,
+          prenom: document.getElementById("prenomEmploye").value,
+          cin: document.getElementById("cinEmploye").value,
+          occupation: selected,
+          password: document.getElementById("exampleInputPassworde").value,
+          salaire: document.getElementById("employeSalaire").value,
+          salaireF: 0
+        };
+        employeList[i] = employeObjectUpdate;
+      }
+      localStorage.removeItem("editEmploye");
+      localStorage.setItem("tabEmploye", JSON.stringify(employeList));
+      window.location.href = "gestionDesEmploye.html";
+    }
+  } else {
+    for (let i = 0; i < 5; i++) {
+      if (
+        document
+          .getElementById("exampleFormControlSelect1")
+          .getElementsByTagName("option")[i].selected
+      ) {
+        let selectedOccupation = document
+          .getElementById("exampleFormControlSelect1")
+          .getElementsByTagName("option")[i].value;
+        selected = selectedOccupation;
+      }
+    }
+    let employeObject = {
+      nom: document.getElementById("nomEmploye").value,
+      prenom: document.getElementById("prenomEmploye").value,
+      cin: document.getElementById("cinEmploye").value,
+      occupation: selected,
+      password: document.getElementById("exampleInputPassworde").value,
+      salaire: document.getElementById("employeSalaire").value,
+      salaireF: 0
+    };
     if (
-      document
-        .getElementById("exampleFormControlSelect1")
-        .getElementsByTagName("option")[i].selected
+      employeObject.nom &&
+      employeObject.prenom &&
+      employeObject.cin &&
+      employeObject.occupation
     ) {
-      var selectedOccupation = document
-        .getElementById("exampleFormControlSelect1")
-        .getElementsByTagName("option")[i].value;
+      employeList.push(employeObject);
+      localStorage.setItem("tabEmploye", JSON.stringify(employeList));
+      window.location.href = "gestionDesEmploye.html";
     }
   }
-  var employeObject = {
-    nom: document.getElementById("nomEmploye").value,
-    prenom: document.getElementById("prenomEmploye").value,
-    cin: document.getElementById("cinEmploye").value,
-    occupation: selectedOccupation,
-    password: document.getElementById("exampleInputPassword1").value,
-    salaire: document.getElementById("employeSalaire").value,
-    salaireF: 0
-  };
-  if (
-    employeObject.nom &&
-    employeObject.prenom &&
-    employeObject.cin &&
-    employeObject.occupation
-  ) {
-    employeList.push(employeObject);
-    localStorage.setItem("tabEmploye", JSON.stringify(employeList));
-  }
-
-  window.location.href = "gestionDesEmploye.html";
 }
 
 ////////////////////////affichage des employe/////////////
 
 function affEmploye() {
-  var employeList = JSON.parse(localStorage.getItem("tabEmploye")) || [];
+  let employeList = JSON.parse(localStorage.getItem("tabEmploye")) || [];
   for (let i = 0; i < employeList.length; i++) {
-    var html = "";
+    let html = "";
     html +=
       "<tr><td>" +
       employeList[i].nom +
@@ -78,48 +107,49 @@ function affEmploye() {
 ////////////////////edit and delet employe
 
 function modEmploye(id) {
-  var employeList = JSON.parse(localStorage.getItem("tabEmploye"));
-
+  let employeList = JSON.parse(localStorage.getItem("tabEmploye"));
   for (let i = 0; i < employeList.length; i++) {
     if (employeList[i].cin == id) {
-      modEm(employeList[i].cin);
+      localStorage.setItem("editEmploye", employeList[i].cin);
+      window.location.href = "addEmploye.html";
       break;
     }
   }
 }
 
-function modEm(id) {
-  window.location.href = "addEmploye.html";
-  var employeList = JSON.parse(localStorage.getItem("tabEmploye"));
-  for (let i = 0; i < employeList.length; i++) {
-    if (employeList[i].cin === id) {
-      document.getElementById("nomEmploye").value = employeList[i].nom;
-      document.getElementById("prenomEmploye").value = employeList[i].prenom;
-      document.getElementById("cinEmploye").value = employeList[i].cin;
-      document.getElementById("exampleInputPassword1").value =
-        employeList[i].password;
-      document.getElementById("employeSalaire").value = employeList[i].salaire;
+function modEm() {
+  let employeList = JSON.parse(localStorage.getItem("tabEmploye"));
+  let edit = localStorage.getItem("editEmploye");
+  if (edit) {
+    for (let i = 0; i < employeList.length; i++) {
+      if (employeList[i].cin === edit) {
+        document.getElementById("nomEmploye").value = employeList[i].nom;
+        document.getElementById("prenomEmploye").value = employeList[i].prenom;
+        document.getElementById("cinEmploye").value = employeList[i].cin;
+        document.getElementById("exampleInputPassworde").value =
+          employeList[i].password;
+        document.getElementById("employeSalaire").value =
+          employeList[i].salaire;
 
-      for (let j = 0; j < 5; j++) {
-        if (
-          employeList[i].occupation ===
-          document
-            .getElementById("exampleFormControlSelect1")
-            .getElementsByTagName("option")[j].value
-        ) {
-          document
-            .getElementById("exampleFormControlSelect1")
-            .getElementsByTagName("option")[j].selected;
+        for (let j = 0; j < 5; j++) {
+          if (
+            employeList[i].occupation ===
+            document
+              .getElementById("exampleFormControlSelect1")
+              .getElementsByTagName("option")[j].value
+          ) {
+            document
+              .getElementById("exampleFormControlSelect1")
+              .getElementsByTagName("option")[j].selected;
+          }
         }
       }
     }
   }
-  employeList.splice(i, 1);
-  localStorage.setItem("tabEmploye", JSON.stringify(employeList));
 }
 
 function supEmploye(id) {
-  var employeList = JSON.parse(localStorage.getItem("tabEmploye"));
+  let employeList = JSON.parse(localStorage.getItem("tabEmploye"));
 
   for (let i = 0; i < employeList.length; i++) {
     if (employeList[i].cin == id) {
@@ -133,46 +163,49 @@ function supEmploye(id) {
 ////////////affffichage congee/////////////
 
 function affConge() {
-  var congeTab = JSON.parse(localStorage.getItem("tabConge")) || [];
+  let congeTab = JSON.parse(localStorage.getItem("tabConge")) || [];
   for (let i = 0; i < congeTab.length; i++) {
-    var html3 = "";
-    html3 += "<div class='row mt-2>";
-    html4 += "<div class='col-4'>";
-    html3 += "<p> reason:" + congeTab[i].reason + "</p></br>";
-    html3 +=
-      "<h3>For a period of  :" + " " + congeTab[i].period + " " + "Days</h3>";
-    html3 += "<h4>From :" + congeTab[i].start + "</h4>";
-    html3 += "<h4>To :" + congeTab[i].end + "</h4>";
-
-    html3 +=
-      "<button onclick='confConger(" +
-      congeTab[i].congeId +
-      ")'>confirmation</button>" +
-      "<button onclick='delConger(" +
-      congeTab[i].congeId +
-      ")'>decline</button>";
-    html3 += "</div>";
-    document.getElementById("mainConge").innerHTML += html3;
+    if (congeTab[i].confirmation === false) {
+      let html3 = "";
+      html3 += "<div class='row mt-2>";
+      html3 += "<div class='col-4'>";
+      html3 += "<p> reason:" + congeTab[i].reason + "</p></br>";
+      html3 +=
+        "<h3>For a period of  :" + " " + congeTab[i].period + " " + "Days</h3>";
+      html3 += "<h4>From :" + congeTab[i].start + "</h4>";
+      html3 += "<h4>To :" + congeTab[i].end + "</h4>";
+      html3 +=
+        "<button onclick='confConger(" +
+        congeTab[i].congeId +
+        "," +
+        congeTab[i].id +
+        ")'>confirmation</button>" +
+        "<button onclick='delConger(" +
+        congeTab[i].congeId +
+        "," +
+        congeTab[i].id +
+        ")'>decline</button>";
+      html3 += "</div>";
+      document.getElementById("mainConge").innerHTML += html3;
+    }
   }
 }
 
 ////////////////////////////////////// decliner confirmer conge///////
 
-function confConger(idd) {
-  var congeTab = JSON.parse(localStorage.getItem("tabConge")) || [];
-
+function confConger(congeId, id) {
+  let congeTab = JSON.parse(localStorage.getItem("tabConge")) || [];
   for (let i = 0; i < congeTab.length; i++) {
-    if (congeTab[i].id == idd) {
+    if (congeTab[i].id == id) {
       congeTab[i].confirmation = true;
+      localStorage.setItem("tabConge", JSON.stringify(congeTab));
     }
   }
-
-  var employeList = JSON.parse(localStorage.getItem("tabEmploye"));
-
+  let employeList = JSON.parse(localStorage.getItem("tabEmploye"));
   for (let i = 0; i < employeList.length; i++) {
-    if (employeList[i] === id) {
-      var tab = localStorage.getItem("sendEmploye") || [];
-      var object = {
+    if (employeList[i].id === id) {
+      let tab = localStorage.getItem("sendEmploye") || [];
+      let object = {
         title: "vacation",
         msg: "Your request has been accepted",
         id: employeList[i].cin,
@@ -184,21 +217,12 @@ function confConger(idd) {
   }
 }
 
-function delConger(idd) {
-  var congeTab = JSON.parse(localStorage.getItem("tabConge")) || [];
-
-  for (let i = 0; i < congeTab.length; i++) {
-    if (congeTab[i].id == idd) {
-      congeTab[i].confirmation = false;
-    }
-  }
-
+function delConger(congeId, id) {
   var employeList = JSON.parse(localStorage.getItem("tabEmploye"));
-
   for (let i = 0; i < employeList.length; i++) {
-    if (employeList[i] == id) {
-      var tab = localStorage.getItem("sendEmploye") || [];
-      var object = {
+    if (employeList[i].id === id) {
+      let tab = localStorage.getItem("sendEmploye") || [];
+      let object = {
         title: "vacation",
         msg: "Your request has been declined",
         id: employeList[i].cin,
@@ -213,41 +237,48 @@ function delConger(idd) {
 ///////////////////////afffichage reclamation ///////////
 
 function affRec() {
-  var recTab = JSON.parse(localStorage.getItem("tabRec")) || [];
-  for (let i = 0; i < recTab.length; i++) {
-    var html4 = "";
-    html4 += "<div class='row'>";
-    html4 += "<div class='col-4'>";
-    html4 += "<h3>" + recTab[i].reason + "</h3>";
-    html4 +=
-      "<p class='mt-2 mb-2 font-weight-light'>" + recTab[i].text + "</p>";
-    html4 +=
-      "<button onclick='confRec(" +
-      recTab[i].recId +
-      ")'>confirmer</button>" +
-      "<button onclick='delRec(" +
-      recTab[i].recId +
-      ")'>decliner</button>";
-    html4 += "</div>";
-    document.getElementById("mainRec").innerHTML += html4;
+  let recTab = JSON.parse(localStorage.getItem("tabRec"));
+  if (recTab) {
+    for (let i = 0; i < recTab.length; i++) {
+      let html4 = "";
+      html4 += "<div class='row'>";
+      html4 += "<div class='col-4'>";
+      html4 += "<h3>" + recTab[i].reason + "</h3>";
+      html4 +=
+        "<p class='mt-2 mb-2 font-weight-light'>" + recTab[i].deatil + "</p>";
+      html4 +=
+        "<button onclick='confRec(" +
+        recTab[i].ide +
+        "," +
+        recTab[i].recId +
+        ")'>confirmer</button>" +
+        "<button onclick='delRec(" +
+        recTab[i].ide +
+        "," +
+        recTab[i].recId +
+        ")'>decliner</button>";
+      html4 += "</div>";
+      document.getElementById("mainRec").innerHTML += html4;
+    }
   }
 }
 
 ///////////////////////////////////////recc decliner + confirmer
 
-function confRec(id) {
+function confRec(ide, recId) {
+  let recTab = JSON.parse(localStorage.getItem("tabRec"));
   for (let i = 0; i < recTab.length; i++) {
-    if (recTab[i].id == id) {
+    if (recTab[i].recId == recId) {
       recTab[i].confirmation = true;
+      localStorage.setItem("tabRec", JSON.stringify(recTab));
     }
   }
 
-  var employeList = JSON.parse(localStorage.getItem("tabEmploye"));
-
+  let employeList = JSON.parse(localStorage.getItem("tabEmploye"));
   for (let i = 0; i < employeList.length; i++) {
-    if (employeList[i] === id) {
-      var tab = localStorage.getItem("sendEmploye") || [];
-      var object = {
+    if (employeList[i].cin === ide) {
+      let tab = JSON.parse(localStorage.getItem("sendEmploye")) || [];
+      let object = {
         title: "vacation",
         msg: "Your request has been accepted",
         id: employeList[i].cin,
@@ -258,19 +289,14 @@ function confRec(id) {
     }
   }
 }
-function delRec(id) {
-  for (let i = 0; i < recTab.length; i++) {
-    if (recTab[i].id == id) {
-      recTab[i].confirmation = false;
-    }
-  }
 
-  var employeList = JSON.parse(localStorage.getItem("tabEmploye"));
+function delRec(ide, idRec) {
+  let employeList = JSON.parse(localStorage.getItem("tabEmploye"));
 
   for (let i = 0; i < employeList.length; i++) {
-    if (employeList[i] === id) {
-      var tab = localStorage.getItem("sendEmploye") || [];
-      var object = {
+    if (employeList[i].cin === ide) {
+      let tab = JSON.parse(localStorage.getItem("sendEmploye")) || [];
+      let object = {
         title: "vacation",
         msg: "Your request has been declined",
         id: employeList[i].cin,
@@ -285,82 +311,57 @@ function delRec(id) {
 /////////////////////gestion des pesences//////
 
 function affPresence() {
-  var employeList = JSON.parse(localStorage.getItem("tabEmploye")) || [];
+  let employeList = JSON.parse(localStorage.getItem("tabEmploye")) || [];
 
   for (let i = 0; i < employeList.length; i++) {
-    html5 = "";
-    html5 =
-      "<option>" +
-      employeList[i].nom +
-      " " +
-      employeList[i].prenom +
-      "</option>";
+    let html5 = "";
+    html5 = "<option>" + employeList[i].nom + "</option>";
     document.getElementById("selectAbsent").innerHTML += html5;
-  }
-
-  for (let i = 0; i < employeList.length; i++) {
-    if (
-      document.getElementById("selectAbsent").getElementsByTagName("option")[i]
-        .selected
-    ) {
-      var tabP = JSON.parse(localStorage.getItem("tabPresence")) || [];
-      for (let j = 0; j < tabP.length; j++) {
-        if (tabP[j].id === employeList[i].cin) {
-          html6 = "";
-          html6 += "<div class='row'>";
-          html6 += "<div class='col-4'>";
-          html6 += tabP[j].absentDate;
-          html6 += "</div></div>";
-
-          document.getElementById("absentList").innerHTML += html6;
-        }
-      }
-    }
   }
 }
 
 function actionAbsent() {
-  var absentDate = document.getElementById("absentDate").value;
-  var employeList = JSON.parse(localStorage.getItem("tabEmploye")) || [];
-
+  let absentDate = document.getElementById("absentDate").value;
+  let employeList = JSON.parse(localStorage.getItem("tabEmploye")) || [];
+  let tabPresence = JSON.parse(localStorage.getItem("tabPresence")) || [];
+  let date = new Date();
+  let select = document
+    .getElementById("selectAbsent")
+    .getElementsByTagName("option");
   for (let i = 0; i < employeList.length; i++) {
-    if (
-      document.getElementById("selectAbsent").getElementsByTagName("option")[i]
-        .selected
-    ) {
-      if (absentDate) {
-        var objectPresence = {
-          id: employeList[i].cin,
-          date: absentDate,
-          month: Date.getMonth()
-        };
-        var tab = JSON.parse(localStorage.getItem("tabPresence")) || [];
-        tab.push(objectPresence);
-        localStorage.setItem("tabPresence", JSON.stringify(tab));
+    for (let slct of select) {
+      if (slct.innerText === employeList[i].nom && slct.selected) {
+        if (absentDate) {
+          let objectPresence = {
+            id: employeList[i].cin,
+            date: absentDate,
+            month: date.getMonth()
+          };
+          employeList[i].salaireF += 1;
+          tabPresence.push(objectPresence);
+        }
       }
     }
-    if (Date.getDate() === 1) {
-      employeList[i].salaireF = 0;
-    }
-    employeList[i].salaireF += 1;
   }
+  localStorage.setItem("tabEmploye", JSON.stringify(employeList));
+  localStorage.setItem("tabPresence", JSON.stringify(tabPresence));
 }
 
 //////////////////////////////affichage salaire//////////////
 
 function affSalaire() {
-  var employeList = JSON.parse(localStorage.getItem("tabEmploye")) || [];
+  let employeList = JSON.parse(localStorage.getItem("tabEmploye"));
 
   for (let i = 0; i < employeList.length; i++) {
-    var html2 = "";
+    let html2 = "";
     html2 += "<tr><td>";
     html2 += employeList[i].nom + " " + employeList[i].prenom + "</td>";
-    html2 += "<td>" + employeList[i].salire + "</td>";
+    html2 += "<td>" + employeList[i].salaire + "</td>";
     html2 +=
       "<td>" +
-      employeList[i].salire -
-      employeList[i].salaireF * 10 +
-      "</td></tr>";
+      (parseInt(employeList[i].salaire) - employeList[i].salaireF * 10) +
+      "</td>";
+    html2 += "</tr>";
 
     document.getElementById("saliare").innerHTML += html2;
   }
@@ -369,13 +370,15 @@ function affSalaire() {
 /////////////////////////account///////////////
 
 function accountRh() {
-  var account = localStorage.getItem("tabLoginRh") || [];
-  var employe = JSON.parse(localStorage.getItem("tabRh")) || [];
+  let account = localStorage.getItem("tabLoginRh");
+  let employe = JSON.parse(localStorage.getItem("tabRh"));
+
   for (let i = 0; i < employe.length; i++) {
-    if (employe[i].cin === account) {
-      var html = "";
+    if (employe[i].id == account) {
+      let html = "";
       html += "<tr><td>" + employe[i].name + "</td><td>";
       html += employe[i].prenom + "</td>";
+      html += "<td>" + employe[i].salaire + "</td>";
       html += "<td>" + employe[i].id + "</td><td>";
       html += employe[i].password + "</td></tr>";
 
@@ -384,19 +387,19 @@ function accountRh() {
   }
 }
 
-///////////////////////////affmessage
+///////////////////////////affmessage/////////////////
 
 function affMessage() {
-  var tab = localStorage.getItem("messageAdminToRh") || [];
-  for (i < tab.length; (i = 0); i--) {
-    html6 = "";
+  let tab = JSON.parse(localStorage.getItem("messageAdminToRh")) || [];
+  let html6 = "";
+  for (let i = 0; i < tab.length; i++) {
     html6 += "<div class='row'>";
-    html6 += "<div class='col-4'>";
-    html6 += "title :" + tab[i].title;
+    html6 += "<div class='col-4'> title :";
+    html6 += tab[i].title;
     html6 += "</div></div>";
     html6 += "<div class='row'>";
-    html6 += "<div class='col-4'>";
-    html6 += "content :" + tab[i].msg;
+    html6 += "<div class='col-4'>content :";
+    html6 += tab[i].msg;
     html6 += "</div></div>";
 
     document.getElementById("msgaff").innerHTML += html6;
@@ -406,9 +409,9 @@ function affMessage() {
 //////////////////////////message/////
 
 function affEmployeSelect() {
-  var employeList = JSON.parse(localStorage.getItem("tabEmploye"));
+  let employeList = JSON.parse(localStorage.getItem("tabEmploye"));
   for (let i = 0; i < employeList.length; i++) {
-    html5 = "";
+    let html5 = "";
     html5 =
       "<option>" +
       employeList[i].nom +
@@ -420,15 +423,15 @@ function affEmployeSelect() {
 }
 
 function sendEmployeMessage() {
-  var employeList = JSON.parse(localStorage.getItem("tabEmploye"));
+  let employeList = JSON.parse(localStorage.getItem("tabEmploye"));
   for (let i = 0; i < employeList.length; i++) {
     if (
       document
         .getElementById("selectMsgEmploye")
         .getElementsByTagName("option")[i].selected
     ) {
-      var tab = localStorage.getItem("sendEmploye") || [];
-      var object = {
+      let tab = JSON.parse(localStorage.getItem("sendEmploye")) || [];
+      let object = {
         title: document.getElementById("title").value,
         msg: document.getElementById("exampleFormControlTextarea").value,
         id: employeList[i].cin,
@@ -437,15 +440,5 @@ function sendEmployeMessage() {
       tab.push(object);
       localStorage.setItem("sendEmploye", JSON.stringify(tab));
     }
-  }
-  if (document.getElementById("exampleRadios").checked) {
-    var tab2 = localStorage.getItem("sendAllEmploye") || [];
-    var object2 = {
-      title: document.getElementById("title").value,
-      msg: document.getElementById("exampleFormControlTextarea").value,
-      idMsg: Date.now()
-    };
-    tab2.push(object2);
-    localStorage.setItem("sendEmploye", JSON.stringify(tab2));
   }
 }

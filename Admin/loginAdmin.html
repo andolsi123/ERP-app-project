@@ -1,57 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>login user</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      media="screen"
-      href="./../assets/css/loginAdmin.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body class="image">
-    <div class="container mt-5 pt-5">
-      <div class="row justify-content-center">
-        <div class="col-4">
-          <h1 style="color: ghostwhite">Sign into your personal account</h1>
-          <h3 style="color: gray">Enter your details below</h1>  
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>login user</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" media="screen" href="./../assets/css/loginAdmin.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" />
+</head>
+
+<body class="image">
+  <div class="container mt-5 pt-5">
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <h1 style="color: ghostwhite">Sign into your personal account</h1>
+        <h3 style="color: gray">Enter your details below</h1>
           <form class="formConatiner">
             <div class="form-group">
               <label for="exampleInputEmail1" style="color: ghostwhite">login *</label>
-              <input
-                type="text"
-                class="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-                placeholder="login"
-              />
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="login" />
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1" style="color: ghostwhite">Password *</label>
-              <input
-                type="Password"
-                class="form-control"
-                id="exampleInputPassword1"
-                placeholder="Password"
-              />
+              <input type="Password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
             </div>
-            <button type="submit" class="btn btn-block btn-success" onclick="actionLoginAdmin()">
+            <button type="button" class="btn btn-block btn-success" onclick="actionLoginAdmin()">
               Login
             </button>
           </form>
-        </div>
       </div>
     </div>
+  </div>
 
-    <script src="../assets/javascript/Admin/mainAdmin.js"></script>
-  </body>
+  <script src="../assets/javascript/Admin/mainAdmin.js"></script>
+</body>
+
 </html>

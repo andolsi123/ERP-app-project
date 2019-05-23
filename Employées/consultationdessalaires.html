@@ -1,91 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<head>
+  <meta charset="utf-8" />
 
-    <title>Dashboard</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <meta
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
-      name="viewport"
-    />
-    <meta name="viewport" content="width=device-width" />
+  <title>Dashboard</title>
 
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta name="viewport" content="width=device-width" />
 
-    <link
-      href="assets/css/light-bootstrap-dashboard.css?v=1.4.0"
-      rel="stylesheet"
-    />
-  </head>
+  <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
 
-  <body onload="salairAff()">
-    <div class="wrapper">
-      <div class="sidebar" data-color="purple">
-        <div class="sidebar-wrapper">
-          <div class="logo">
-            <a href="" class="simple-text"> acme underworld </a>
-          </div>
+  <link href="../assets/css/light-bootstrap-dashboard.css" rel="stylesheet" />
+</head>
 
-          <ul class="nav">
-              <li>
-                <a href="./Home.html"> <p>Dashboard</p> </a>
-              </li>
-              <li>
-                <a href="./consultationdessalaires.html"> <p>Salary</p> </a>
-              </li>
-              <li>
-                <a href="./consultationdespresences.html"> <p>productivity</p> </a>
-              </li>
-              <li>
-                <a href="./Réclamation.html"> <p>COMPLAINTS</p> </a>
-              </li>
-              <li>
-                <a href="./Gestiondecongé.html"> <p>holidays</p> </a>
-              </li>
-              <li>
-                <a href="./messagesE.html"> <p>Messages</p> </a>
-              </li>
-            </ul>
-        </div>
-      </div>
-
-      <div class="main-panel">
-        <nav class="navbar navbar-default navbar-fixed">
-          <div class="container-fluid">
-            <ul class="nav navbar-nav navbar-right">
-              <li>
-                <button class="btn">
-                  <a href=""> <p>Account</p> </a>
-                </button>
-              </li>
-              <li>
-                <button id="btnDconnection" class="btn">
-                  <a href="../login.html"> <p>Log out</p> </a>
-                </button>
-              </li>
-            </ul>
-          </div>
-        </nav>
-
-        <div class="content">
-          <div class="container-fluid">
-            
-            <div id="employeSalaireAff"></div>
-
-          </div>
+<body onload="salairAff()">
+  <div class="wrapper">
+    <div class="sidebar" data-color="purple">
+      <div class="sidebar-wrapper">
+        <div class="logo">
+          <a href="" class="simple-text"> acme underworld </a>
         </div>
 
-        <footer class="footer">
-          <div class="container-fluid">
-            <p class="copyright pull-right">Acme underworld cooperation</p>
-          </div>
-        </footer>
+        <ul class="nav">
+          <li>
+            <a href="./Home.html">
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li>
+            <a href="./consultationdessalaires.html">
+              <p>Salary</p>
+            </a>
+          </li>
+          <li>
+            <a href="./consultationdespresences.html">
+              <p>productivity</p>
+            </a>
+          </li>
+          <li>
+            <a href="./Réclamation.html">
+              <p>COMPLAINTS</p>
+            </a>
+          </li>
+          <li>
+            <a href="./Gestiondecongé.html">
+              <p>holidays</p>
+            </a>
+          </li>
+          <li>
+            <a href="./messagesE.html">
+              <p>Messages</p>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
 
-    <script src="../assets/javascript/Employe/mainE.js"></script>
-  </body>
+    <div class="main-panel">
+      <nav class="navbar navbar-default navbar-fixed">
+        <div class="container-fluid">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <button class="btn">
+                <a href="./accountEmplye.html">
+                  <p>Account</p>
+                </a>
+              </button>
+            </li>
+            <li>
+              <button id="btnDconnection" class="btn" onclick="actiondeconnect()" type="button">
+                <a href="../login.html">
+                  <p>Log out</p>
+                </a>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="content">
+        <div class="container-fluid">
+
+          <div id="employeSalaireAff"></div>
+
+        </div>
+      </div>
+
+      <footer class="footer">
+        <div class="container-fluid">
+          <p class="copyright pull-right">Acme underworld cooperation</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="../assets/javascript/Employe/mainE.js"></script>
+</body>
+
 </html>

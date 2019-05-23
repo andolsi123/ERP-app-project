@@ -1,72 +1,108 @@
-
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <title>messages</title>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <body>
+  <title>messages</title>
 
-    <header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand border-right pr-3" href="#">Acme Underworld</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link border mr-1 rounded" href="./main.html">Home </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link border mr-1 rounded" href="./GererRh.html">Human Ressources</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link border mr-1 rounded" href="./ConsulterEmployer.html">Employees</a>
-        </li>
-        <li class="nav-item">
-                <a class="nav-link active border rounded bg-white text-dark" href="./messagesA.html">Messages</a>
-              </li>
-      </ul>
-      <a href="GererCompteAdmin.html"><button class="btn btn-outline-success my-2 my-sm-0 mr-2" type="submit">CONFIGURATION</button></a>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="decAdmin()">LOGOUT</button>
-    </div>
-  </nav>
-</header>
-<div class="container mt-5 pt-5 ml-5">
-    <div class="row ml-4 mt-5">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand border-right pr-3" href="#">Acme Underworld</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link border mr-1 rounded" href="./main.html">Home </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link border mr-1 rounded" href="./GererRh.html">Human Ressources</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link border mr-1 rounded" href="./ConsulterEmployer.html">Employees</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active border rounded bg-white text-dark" href="./messagesA.html">Messages</a>
+          </li>
+        </ul>
+        <a href="GererCompteAdmin.html"><button class="btn btn-outline-success my-2 my-sm-0 mr-2"
+            type="submit">CONFIGURATION</button></a>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="decAdmin()">LOGOUT</button>
+      </div>
+    </nav>
+  </header>
+  <div class="container mt-5 pt-5 ml-5">
+
+    <div class="row ml-5">
+      <div class="col-4">
         <div class="form-group">
           <label>Title:</label>
-        <input class="form-control" type="text" placeholder="Default input" id="titleM">
+          <input class="form-control" type="text" placeholder="Default input" id="titleM">
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="container ml-5">
+    <div class="row ml-5">
+      <div class="col-4">
 
         <div class="form-group">
-            <label for="exampleFormControlTextarea1">Message:</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-          </div>
-          <div class="form-check">
-              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-              <label class="form-check-label" for="exampleRadios1">
-                Employee
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-              <label class="form-check-label" for="exampleRadios2">
-                 HR   </label>
-            </div>
-          <button class="btn" onclick="sendMessage()">Submit</button>
+          <label for="exampleFormControlTextarea1">Message:</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
       </div>
+    </div>
+  </div>
+
+  <div class="container ml-5">
+    <div class="row ml-5">
+      <div class="col-4">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+          <label class="form-check-label" for="exampleRadios1">
+            Employee
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container ml-5">
+
+    <div class="row ml-5">
+      <div class="col-4">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+          <label class="form-check-label" for="exampleRadios2">
+            HR </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container ml-5 mt-2">
+    <div class="row ml-5">
+      <div class="col-4">
+        <button class="btn rounded border btn-dark" onclick="sendMessage()">Submit</button>
       </div>
 
+    </div>
+  </div>
 
 
-<script src="../../ERP website project/assets/javascript/Admin/mainAdmin.js"></script>
+
+
+  <script src="../../ERP website project/assets/javascript/Admin/mainAdmin.js"></script>
 
 </body>
+
 </html>
